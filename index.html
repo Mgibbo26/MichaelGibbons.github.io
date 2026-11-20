@@ -1,1 +1,375 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <meta name="description" content="Mike Gibbons - commercial and media finance professional using practical automation to strengthen reconciliations, reporting and process control.">
+  <title>Mike Gibbons | Commercial Finance &amp; Automation</title>
+  <style>
+    :root {
+      --navy:#071b33; --navy-2:#0e2a47; --teal:#14b8a6; --teal-dark:#0f8278;
+      --ink:#14243a; --slate:#53647a; --muted:#718198; --line:#d7e1ea;
+      --cloud:#f4f7fa; --white:#fff; --amber:#f4b942; --green:#2e9c78; --blue:#2f80ed;
+      --shadow:0 14px 35px rgba(7,27,51,.10); --radius:18px; --max:1160px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--ink); background:var(--cloud); line-height:1.6; }
+    img { max-width:100%; display:block; }
+    a { color:inherit; }
+    button, a { -webkit-tap-highlight-color:transparent; }
+    :focus-visible { outline:3px solid var(--amber); outline-offset:3px; }
+    .container { width:min(var(--max), calc(100% - 40px)); margin-inline:auto; }
+    .eyebrow { color:var(--teal-dark); font-weight:800; letter-spacing:.15em; text-transform:uppercase; font-size:.78rem; }
+    .muted { color:var(--slate); }
+    .skip { position:absolute; left:-9999px; top:10px; z-index:100; background:#fff; padding:.7rem 1rem; border-radius:8px; }
+    .skip:focus { left:10px; }
+    header { position:sticky; top:0; z-index:50; background:rgba(7,27,51,.96); color:#fff; backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,.12); }
+    .nav { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { text-decoration:none; font-weight:850; letter-spacing:.01em; }
+    .brand span { color:var(--teal); }
+    .nav-links { display:flex; align-items:center; gap:6px; }
+    .nav-links a { text-decoration:none; color:#dce8f2; font-weight:700; font-size:.92rem; padding:.65rem .8rem; border-radius:10px; }
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,.08); }
+    .nav-toggle { display:none; border:1px solid rgba(255,255,255,.28); color:#fff; background:transparent; border-radius:10px; min-width:46px; min-height:46px; font-size:1.15rem; }
+    .hero { background:linear-gradient(118deg,var(--navy) 0%,var(--navy-2) 58%,#0a3b50 100%); color:#fff; overflow:hidden; }
+    .hero-grid { min-height:650px; display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:60px; padding:72px 0; }
+    .hero h1 { font-size:clamp(2.4rem,5.5vw,4.8rem); line-height:1.02; letter-spacing:-.045em; margin:.7rem 0 1.3rem; max-width:760px; }
+    .hero h1 span { color:#64dfd3; }
+    .hero .lead { font-size:clamp(1.05rem,2vw,1.3rem); color:#d8e5f0; max-width:690px; margin:0 0 1.7rem; }
+    .hero-actions, .card-actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:.75rem 1.05rem; border-radius:11px; text-decoration:none; font-weight:800; border:1px solid transparent; cursor:pointer; }
+    .btn-primary { color:var(--navy); background:var(--teal); }
+    .btn-primary:hover { background:#64dfd3; }
+    .btn-secondary { color:#fff; border-color:rgba(255,255,255,.42); background:rgba(255,255,255,.04); }
+    .btn-secondary:hover { background:rgba(255,255,255,.10); }
+    .btn-light { color:var(--navy); border-color:var(--line); background:#fff; }
+    .btn-light:hover { border-color:var(--teal); color:var(--teal-dark); }
+    .hero-photo { position:relative; }
+    .hero-photo img { width:100%; aspect-ratio:1/1.05; object-fit:cover; object-position:53% center; border-radius:28px; box-shadow:0 30px 70px rgba(0,0,0,.28); border:1px solid rgba(255,255,255,.18); }
+    .photo-badge { position:absolute; left:-24px; bottom:30px; max-width:280px; background:#fff; color:var(--ink); padding:1rem 1.1rem; border-radius:14px; box-shadow:var(--shadow); font-weight:800; }
+    .photo-badge small { display:block; color:var(--teal-dark); font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:.22rem; }
+    .hero-pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+    .pill { display:inline-flex; align-items:center; min-height:34px; padding:.35rem .75rem; border-radius:999px; font-size:.8rem; font-weight:800; border:1px solid rgba(255,255,255,.2); color:#dce8f2; background:rgba(255,255,255,.06); }
+    section { padding:84px 0; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:34px; }
+    .section-head h2 { font-size:clamp(2rem,4vw,3.1rem); line-height:1.08; letter-spacing:-.035em; margin:.45rem 0 .25rem; }
+    .section-head p { max-width:650px; margin:0; color:var(--slate); }
+    .about-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:28px; }
+    .panel { background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:30px; box-shadow:0 10px 25px rgba(7,27,51,.05); }
+    .panel h3 { margin:0 0 .6rem; font-size:1.25rem; }
+    .panel p { margin:.55rem 0; color:var(--slate); }
+    .cap-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:20px; }
+    .cap { background:#eef7f6; border:1px solid #c8e6e2; border-radius:12px; padding:14px; font-weight:780; color:var(--navy); }
+    .principles { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px; }
+    .principle { background:#fff; border:1px solid var(--line); border-top:4px solid var(--teal); border-radius:14px; padding:20px; min-height:150px; }
+    .principle strong { display:block; color:var(--navy); margin-bottom:.4rem; font-size:1.04rem; }
+    .principle span { color:var(--slate); font-size:.92rem; }
+    #portfolio { background:#eaf0f5; }
+    .filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:25px; }
+    .filter { min-height:44px; padding:.55rem .9rem; border-radius:999px; background:#fff; color:var(--slate); border:1px solid var(--line); font-weight:800; cursor:pointer; }
+    .filter[aria-pressed="true"] { color:#fff; background:var(--navy); border-color:var(--navy); }
+    .projects { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+    .project { display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:0 12px 28px rgba(7,27,51,.06); }
+    .project-top { padding:27px 27px 19px; flex:1; }
+    .project-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:18px; }
+    .status { display:inline-flex; align-items:center; min-height:30px; padding:.25rem .65rem; border-radius:999px; font-size:.72rem; font-weight:900; letter-spacing:.04em; text-transform:uppercase; }
+    .status.prototype { background:#fff1c8; color:#715000; }
+    .status.proposed { background:#e9f2ff; color:#205fa9; }
+    .status.working { background:#def4e9; color:#176747; }
+    .project-num { color:#9aabc0; font-weight:900; }
+    .project h3 { font-size:clamp(1.35rem,2.2vw,1.85rem); line-height:1.16; margin:0 0 .7rem; letter-spacing:-.025em; }
+    .project p { color:var(--slate); margin:.5rem 0; }
+    details { margin-top:19px; border-top:1px solid var(--line); padding-top:15px; }
+    summary { cursor:pointer; min-height:44px; display:flex; align-items:center; font-weight:850; color:var(--teal-dark); }
+    .workflow { display:flex; flex-wrap:wrap; gap:7px; list-style:none; padding:4px 0 2px; margin:0; }
+    .workflow li { position:relative; background:#eef7f6; border:1px solid #c8e6e2; border-radius:9px; padding:.42rem .6rem; font-size:.78rem; font-weight:760; color:var(--navy); }
+    .project-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:19px 27px 27px; }
+    .project-actions.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .project.featured { border-color:#a9dcd5; box-shadow:0 16px 34px rgba(7,27,51,.10); }
+    .project-actions .btn { text-align:center; }
+    .evidence-note { margin-top:24px; background:#fff; border-left:5px solid var(--amber); border-radius:12px; padding:17px 19px; color:var(--slate); }
+    .experience-grid { display:grid; grid-template-columns:1.2fr .8fr; gap:25px; }
+    .timeline { display:grid; gap:12px; }
+    .role { padding:20px; border:1px solid var(--line); border-radius:14px; background:#fff; }
+    .role h3 { margin:0; font-size:1.1rem; }
+    .role .meta { color:var(--teal-dark); font-weight:800; margin:.2rem 0 .55rem; font-size:.9rem; }
+    .role p { color:var(--slate); margin:0; }
+    .tool-list { display:flex; flex-wrap:wrap; gap:9px; margin-top:15px; }
+    .tool { border:1px solid var(--line); background:#fff; border-radius:10px; padding:.5rem .68rem; font-weight:770; color:var(--navy); }
+    .contact { background:var(--navy); color:#fff; }
+    .contact-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; }
+    .contact h2 { font-size:clamp(2rem,4vw,3.3rem); line-height:1.08; margin:.5rem 0 1rem; }
+    .contact p { color:#cbd9e6; max-width:680px; }
+    .contact-card { border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); border-radius:18px; padding:25px; }
+    .contact-card a { color:#fff; text-decoration:none; font-weight:800; display:block; padding:.65rem 0; overflow-wrap:anywhere; }
+    footer { background:#041426; color:#9fb1c3; padding:28px 0; font-size:.88rem; }
+    footer .container { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    [hidden] { display:none !important; }
+    @media (max-width:900px) {
+      .hero-grid, .about-grid, .experience-grid, .contact-grid { grid-template-columns:1fr; }
+      .hero-grid { min-height:auto; gap:42px; padding:58px 0 68px; }
+      .hero-photo { max-width:620px; }
+      .hero-photo img { aspect-ratio:16/10; object-position:50% 31%; }
+      .photo-badge { left:18px; }
+      .projects, .principles { grid-template-columns:1fr 1fr; }
+      .section-head { align-items:start; flex-direction:column; gap:12px; }
+    }
+    @media (max-width:720px) {
+      .container { width:min(100% - 28px,var(--max)); }
+      .nav-toggle { display:inline-flex; align-items:center; justify-content:center; }
+      .nav-links { position:absolute; left:14px; right:14px; top:66px; display:none; flex-direction:column; align-items:stretch; padding:12px; background:var(--navy-2); border:1px solid rgba(255,255,255,.15); border-radius:14px; box-shadow:var(--shadow); }
+      .nav-links.open { display:flex; }
+      .nav-links a { min-height:46px; display:flex; align-items:center; }
+      section { padding:64px 0; }
+      .projects, .principles, .cap-grid, .project-actions, .project-actions.three { grid-template-columns:1fr; }
+      .panel, .project-top { padding:22px; }
+      .project-actions { padding:0 22px 22px; }
+      .hero-photo img { aspect-ratio:4/3; }
+      .photo-badge { position:static; margin-top:-18px; margin-inline:14px; max-width:none; }
+    }
+    @media (max-width:420px) {
+      .hero h1 { font-size:2.35rem; }
+      .hero-actions .btn { width:100%; }
+      .panel { padding:19px; }
+      .project-top { padding:20px; }
+      .project-actions { padding:0 20px 20px; }
+      .project-meta { align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Mike Gibbons home">MIKE GIBBONS <span>•</span> FINANCE &amp; AUTOMATION</a>
+      <button class="nav-toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open navigation">☰</button>
+      <nav class="nav-links" id="site-menu" aria-label="Primary navigation">
+        <a href="#about">About</a><a href="#portfolio">Portfolio</a><a href="automation-projects.html">Project workflows</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow" style="color:#64dfd3">Commercial finance • Reconciliations • Process improvement</div>
+          <h1>Finance that <span>drives progress.</span></h1>
+          <p class="lead">I combine 18 years of commercial and media finance experience with practical automation to simplify processes, strengthen reconciliations and make financial information clearer.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="automation-projects.html">Explore interactive projects</a>
+            <a class="btn btn-secondary" href="#portfolio">View all case studies</a>
+            <a class="btn btn-secondary" href="assets/Michael-Gibbons-Resume-November-2026.pdf" download>Download CV</a>
+          </div>
+          <div class="hero-pills" aria-label="Specialist capabilities">
+            <span class="pill">Commercial finance</span><span class="pill">Media billing &amp; WIP</span><span class="pill">Reconciliations</span><span class="pill">Power Query</span><span class="pill">Python</span>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="assets/michael-gibbons-headshot.jpg" alt="Mike Gibbons, commercial and media finance professional" width="2048" height="1366">
+          <div class="photo-badge"><small>Current focus</small>Commercial finance roles where hands-on process improvement matters.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="eyebrow">About</div><h2>Finance experience is the foundation.</h2></div>
+          <p>Automation is the practical differentiator: a way to reduce repetitive work, improve visibility and give finance teams a more controlled process.</p>
+        </div>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>Commercial and media finance</h3>
+            <p>I have worked across financial accounting, media reconciliation, commercial finance and operational reporting in WPP media-agency environments.</p>
+            <p>My experience includes P&amp;L oversight, forecasting, billing, WIP, month-end reporting, balance-sheet reconciliations, audit support and SOX controls.</p>
+          </article>
+          <article class="panel">
+            <h3>Practical process improvement</h3>
+            <p>I translate recurring finance problems into clear workflows, then use the simplest appropriate tools - Excel, Power Query, VBA, Python and AI-assisted development - to improve them.</p>
+            <div class="cap-grid">
+              <div class="cap">Understand the finance rule</div><div class="cap">Make exceptions visible</div><div class="cap">Keep human review</div><div class="cap">Measure before claiming</div>
+            </div>
+          </article>
+        </div>
+        <div class="principles" aria-label="Process improvement principles">
+          <div class="principle"><strong>People</strong><span>Start with the users, decisions and accountabilities.</span></div>
+          <div class="principle"><strong>Process</strong><span>Separate repeatable mechanics from finance judgement.</span></div>
+          <div class="principle"><strong>Technology</strong><span>Choose tools that fit the source environment and control needs.</span></div>
+          <div class="principle"><strong>Outcome</strong><span>Improve clarity and consistency without overstating results.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="eyebrow">Finance automation portfolio</div><h2>Evidence behind the capability.</h2></div>
+          <p>Interactive project walkthroughs sit alongside the original browser-readable case studies and editable PowerPoints, with direct navigation between them.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter portfolio projects">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">All projects</button>
+          <button class="filter" type="button" data-filter="reconciliation" aria-pressed="false">Reconciliation</button>
+          <button class="filter" type="button" data-filter="models" aria-pressed="false">Finance models</button>
+          <button class="filter" type="button" data-filter="automation" aria-pressed="false">Automation</button>
+          <button class="filter" type="button" data-filter="interactive" aria-pressed="false">Interactive</button>
+        </div>
+        <div class="projects">
+          <article class="project featured" data-category="reconciliation automation interactive">
+            <div class="project-top">
+              <div class="project-meta"><span class="status prototype">Interactive prototype walkthrough</span><span class="project-num">01</span></div>
+              <h3>Media Invoice Reconciliation Engine</h3>
+              <p>Invoice intake, extraction, validation, matching and exception review — with a self-contained 18-stage presentation player built into the website.</p>
+              <details><summary>Read workflow</summary><ol class="workflow"><li>Ingest</li><li>Extract</li><li>Validate</li><li>Match</li><li>Route exceptions</li><li>Human decision</li></ol></details>
+            </div>
+            <div class="project-actions three">
+              <a class="btn btn-primary" href="media-recon.html">Open interactive site</a>
+              <a class="btn btn-light" href="case-studies/media-invoice-reconciliation-engine.pdf" target="_blank" rel="noopener">View case study</a>
+              <a class="btn btn-light" href="presentations/media-invoice-reconciliation-engine.pptx" download>Download PowerPoint</a>
+            </div>
+          </article>
+
+          <article class="project featured" data-category="automation models interactive">
+            <div class="project-top">
+              <div class="project-meta"><span class="status working">Interactive project hub</span><span class="project-num">02</span></div>
+              <h3>Python &amp; AI Automation Project Workflows</h3>
+              <p>Four public-safe workflows covering media reconciliation, usage-to-billing controls, actuals-versus-forecast reporting and accounts-receivable resolution.</p>
+              <details><summary>What is included</summary><ol class="workflow"><li>Problem</li><li>Workflow</li><li>Technology</li><li>Outcomes</li><li>Controls</li><li>Confidentiality</li></ol></details>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-primary" href="automation-projects.html">Explore project workflows</a>
+              <a class="btn btn-light" href="downloads/automation-projects-summary.pdf" target="_blank" rel="noopener">View one-page summary</a>
+            </div>
+          </article>
+
+          <article class="project featured" data-category="models automation interactive">
+            <div class="project-top">
+              <div class="project-meta"><span class="status working">Management decision app</span><span class="project-num">03</span></div>
+              <h3>Revenue Actuals vs Forecast + Web App</h3>
+              <p>A generalised RevRec case study that consolidates actuals, forecast versions and operational job data into controlled dashboards, variance drivers and drill-downs.</p>
+              <details><summary>Read workflow</summary><ol class="workflow"><li>Ingest</li><li>Standardise</li><li>Validate</li><li>Model</li><li>Calculate</li><li>Explain</li></ol></details>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-primary" href="automation-projects.html#revenue-app">Open RevRec workflow</a>
+              <a class="btn btn-light" href="automation-projects.html#projects">View all interactive projects</a>
+            </div>
+          </article>
+
+          <article class="project" data-category="reconciliation automation">
+            <div class="project-top">
+              <div class="project-meta"><span class="status proposed">Proposed workflow</span><span class="project-num">04</span></div>
+              <h3>Media Payment &amp; Remittance Automation</h3>
+              <p>Payment matching, held-item review, query handling and an AP-ready remittance output with explicit reviewer sign-off.</p>
+              <details><summary>Read workflow</summary><ol class="workflow"><li>Load sources</li><li>Standardise</li><li>Match</li><li>Classify holds</li><li>Review</li><li>AP handover</li></ol></details>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-primary" href="case-studies/media-payment-remittance-automation.pdf" target="_blank" rel="noopener">View case study</a>
+              <a class="btn btn-light" href="presentations/media-payment-remittance-automation.pptx" download>Download PowerPoint</a>
+            </div>
+          </article>
+
+          <article class="project" data-category="models automation">
+            <div class="project-top">
+              <div class="project-meta"><span class="status working">Working model pattern</span><span class="project-num">05</span></div>
+              <h3>Power Query Finance &amp; Billing Models</h3>
+              <p>Refreshable source consolidation, structured transformations, mapping checks and finance-ready reporting across billing, WIP and true-up scenarios.</p>
+              <details><summary>Read workflow</summary><ol class="workflow"><li>Folder intake</li><li>Schema cleanup</li><li>Transform</li><li>Model</li><li>Refresh checks</li><li>Finance review</li></ol></details>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-primary" href="case-studies/power-query-finance-billing-models.pdf" target="_blank" rel="noopener">View case study</a>
+              <a class="btn btn-light" href="presentations/power-query-finance-billing-models.pptx" download>Download PowerPoint</a>
+            </div>
+          </article>
+
+          <article class="project" data-category="models automation">
+            <div class="project-top">
+              <div class="project-meta"><span class="status working">Working solution</span><span class="project-num">06</span></div>
+              <h3>Monthly Statement Automation</h3>
+              <p>Batch workbook roll-forwards, period updates, client-specific GL mapping and output preparation using Python, openpyxl and pandas.</p>
+              <details><summary>Read workflow</summary><ol class="workflow"><li>Select period</li><li>Read GL source</li><li>Open batch</li><li>Roll forward</li><li>Apply mappings</li><li>Review outputs</li></ol></details>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-primary" href="case-studies/monthly-statement-automation.pdf" target="_blank" rel="noopener">View case study</a>
+              <a class="btn btn-light" href="presentations/monthly-statement-automation.pptx" download>Download PowerPoint</a>
+            </div>
+          </article>
+        </div>
+        <div class="evidence-note"><strong>Evidence and confidentiality:</strong> interactive workflows and case studies use fictional or synthetic names and clearly labelled illustrative outputs. They do not invent savings, accuracy rates or deployment claims, and they omit client-identifying information and internal financial figures.</div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="eyebrow">Experience &amp; tools</div><h2>Built on 18 years in finance.</h2></div>
+          <p>Career progression from media reconciliation through financial accounting and finance management to commercial leadership.</p>
+        </div>
+        <div class="experience-grid">
+          <div class="timeline">
+            <article class="role"><h3>Commercial Manager</h3><div class="meta">EssenceMediacom / WPP Media • Jan 2023 - Present</div><p>P&amp;L oversight, forecasting, operational reporting, WIP, billing reconciliation, SOX controls and audit support.</p></article>
+            <article class="role"><h3>Finance Manager</h3><div class="meta">WPP Media - Financeplus • Jan 2014 - Dec 2022</div><p>Month-end reporting, balance-sheet reconciliations, billing and expense review, forecasting and audit coordination.</p></article>
+            <article class="role"><h3>Earlier finance roles</h3><div class="meta">Assistant Accountant and Media Reconciliation Officer • May 2008 - Dec 2013</div><p>Financial accounting, journals, accruals, intercompany reconciliations, client invoicing and high-volume media discrepancy resolution.</p></article>
+          </div>
+          <aside class="panel">
+            <h3>Systems and methods</h3>
+            <p>The portfolio combines established finance platforms with pragmatic automation and modelling tools.</p>
+            <div class="tool-list">
+              <span class="tool">Advanced Excel</span><span class="tool">Power Query</span><span class="tool">VBA</span><span class="tool">Python</span><span class="tool">pandas</span><span class="tool">openpyxl</span><span class="tool">OCR</span><span class="tool">AI-assisted development</span><span class="tool">Spectra PF &amp; MD</span><span class="tool">SAP Concur</span><span class="tool">SOX controls</span>
+            </div>
+            <p style="margin-top:1.4rem"><strong>Availability:</strong> two weeks' notice.</p>
+            <a class="btn btn-light" style="margin-top:.7rem" href="assets/Michael-Gibbons-Resume-November-2026.pdf" download>Download full CV</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow" style="color:#64dfd3">Contact</div>
+          <h2>Discuss a commercial finance role or a process problem.</h2>
+          <p>Recruiter and employment conversations are the priority. I am also open to scoped discussions about finance reconciliation, reporting and workflow improvement.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:mikegibbons22@yahoo.com.au?subject=Commercial%20finance%20opportunity">Email Mike</a>
+            <a class="btn btn-secondary" href="mailto:gibboautomates@gmail.com?subject=Finance%20automation%20enquiry">Discuss a process</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <strong>Mike Gibbons</strong>
+          <a href="mailto:mikegibbons22@yahoo.com.au">mikegibbons22@yahoo.com.au</a>
+          <a href="mailto:gibboautomates@gmail.com">gibboautomates@gmail.com</a>
+          <span style="color:#aebfd0">Greater Sydney Area, Australia</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container"><span>© 2026 Mike Gibbons. Finance that drives progress.</span><span>Analyse • Automate • Improve</span></div></footer>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.querySelector('.nav-links');
+    const closeMenu = () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-label','Open navigation'); };
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+
+    const filters = [...document.querySelectorAll('.filter')];
+    const projects = [...document.querySelectorAll('.project')];
+    filters.forEach(button => button.addEventListener('click', () => {
+      const selected = button.dataset.filter;
+      filters.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      projects.forEach(project => {
+        const show = selected === 'all' || project.dataset.category.split(' ').includes(selected);
+        project.hidden = !show;
+      });
+    }));
+  </script>
+</body>
+</html>
