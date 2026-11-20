@@ -137,6 +137,27 @@
       .project-actions { padding:0 20px 20px; }
       .project-meta { align-items:flex-start; }
     }
+/* Make headshot smaller */
+img[src*="headshot"], img[alt*="Mike"], img[alt*="Gibbons"], .hero img, .hero-photo img, .photo img {
+  max-width: 320px !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 0 auto;
+  display: block;
+}
+/* Shrink the frame around the photo and line it up with the text */
+.hero-photo, .photo, .hero-image, .portrait {
+  max-width: 340px !important;
+  height: auto !important;
+  justify-self: center;
+  align-self: center;
+}
+.hero, .hero-grid, .hero-inner {
+  align-items: center !important;
+}    
   </style>
 </head>
 <body>
